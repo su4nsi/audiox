@@ -1,8 +1,8 @@
 .synthone-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+
   height: 100vh;
   width: 100vw;
   gap: 5px;
@@ -16,4 +16,26 @@
 }
 .synthone-container button {
   margin: 0;
+}
+.bottom-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  background-color: rgb(82, 67, 67);
+  padding: 10px;
+}
+
+.knobs {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.piano-container {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

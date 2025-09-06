@@ -6,7 +6,6 @@ const PianoOctave = () => {
 
   return (
     <div className="piano">
-      {/* Teclas blancas */}
       {whiteKeys.map((note, i) => (
         <div className="white-key" key={note}>
           <span className="note-label">{note}</span>

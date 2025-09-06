@@ -9,21 +9,21 @@ export default function SynthOne() {
   const {} = useSynthoneLogic();
 
   return (
-    <div>
-      <div className="synthone-container">
-        <Knob initialValue={freqValue} onChange={setFreqValue} />
-
-        <button
-          onClick={() => {
-            console.log(freqValue);
-          }}
-        ></button>
-
-        <p>Frequency: {freqValue.toFixed(2)}</p>
-      </div>
-      <div>
-        {" "}
-        <PianoOctave />
+    <div className="synthone-container">
+      <h1>SYNTH-ONE</h1>
+      <div className="bottom-container">
+        <div className="knobs">
+          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
+          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
+          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
+          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
+          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
+          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
+        </div>
+        <div className="piano-container">
+          {" "}
+          <PianoOctave />
+        </div>
       </div>
     </div>
   );
