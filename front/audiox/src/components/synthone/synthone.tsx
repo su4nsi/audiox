@@ -1,14 +1,26 @@
-import React from "react";
+import { useState } from "react";
+import Knob from "./knob/knob";
+import useSynthoneLogic from "./useSynthOneLogic";
+import "./synthone.css";
 
-function SynthOne(): React.JSX.Element {
+export default function SynthOne() {
+  const [freqValue, setFreqValue] = useState(0.5);
+  const { toggleNote, isPlaying } = useSynthoneLogic(freqValue);
+
   return (
-    <header className="main-header-synthone">
-      <h1>SynthOne</h1>
-      <p>
-        A simple web-based synthesizer built with React and the Web Audio API.
-      </p>
-    </header>
+    <div className="synthone-container">
+      <Knob initialValue={freqValue} onChange={setFreqValue} />
+
+      <button
+        onClick={() => {
+          toggleNote();
+          console.log(freqValue);
+        }}
+      >
+        {isPlaying ? "Stop" : "Play"}
+      </button>
+
+      <p>Frequency: {freqValue.toFixed(2)}</p>
+    </div>
   );
 }
-
-export default SynthOne;
