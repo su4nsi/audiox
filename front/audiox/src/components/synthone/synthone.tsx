@@ -5,20 +5,21 @@ import PianoOctave from "./piano/pianooctave";
 import "./synthone.css";
 
 export default function SynthOne() {
-  const [freqValue, setFreqValue] = useState(0.5);
-  const {} = useSynthoneLogic();
+  const [filterValue, setFilterValue] = useState(0.5);
+  const [freqValuex, setFreqValuex] = useState(0.5);
+  const {} = useSynthoneLogic(filterValue);
 
   return (
     <div className="synthone-container">
       <h1>SYNTH-ONE</h1>
       <div className="bottom-container">
         <div className="knobs">
-          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
-          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
-          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
-          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
-          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
-          <Knob initialValue={freqValue} onChange={setFreqValue} />{" "}
+          <Knob initialValue={filterValue} onChange={setFilterValue} />{" "}
+          <Knob initialValue={freqValuex} onChange={setFreqValuex} />{" "}
+          <Knob initialValue={freqValuex} onChange={setFreqValuex} />{" "}
+          <Knob initialValue={freqValuex} onChange={setFreqValuex} />{" "}
+          <Knob initialValue={freqValuex} onChange={setFreqValuex} />{" "}
+          <Knob initialValue={freqValuex} onChange={setFreqValuex} />{" "}
         </div>
         <div className="piano-container">
           {" "}

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import * as Tone from "tone";
 
-const useSynthoneLogic = () => {
+const useSynthoneLogic = (filterValue: number) => {
   const synthRef = useRef<Tone.PolySynth | null>(null);
+  const filterRef = useRef<Tone.Filter | null>(null);
   const [currentFreq, setCurrentFreq] = useState(261.63);
   const [level, setLevel] = useState(3);
   const levelRef = useRef(3);
@@ -11,15 +12,17 @@ const useSynthoneLogic = () => {
   const activeFrequenciesRef = useRef<Map<string, number>>(new Map());
 
   useEffect(() => {
+    Tone.start();
+    filterRef.current = new Tone.Filter(1000, "lowpass").toDestination();
     synthRef.current = new Tone.PolySynth(Tone.Synth, {
-      oscillator: { type: "sawtooth" },
+      oscillator: { type: "triangle" },
       envelope: {
         attack: 0.0,
         decay: 0.1,
         sustain: 0.5,
         release: 1.5,
       },
-    }).toDestination();
+    }).connect(filterRef.current);
     synthRef.current.volume.value = -10;
     const keyMap: Record<string, number> = {
       s: 261.63,
@@ -85,11 +88,19 @@ const useSynthoneLogic = () => {
 
     return () => {
       synthRef.current?.dispose();
+      filterRef.current?.dispose();
       synthRef.current = null;
+      filterRef.current = null;
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
   }, []);
+
+  useEffect(() => {
+    if (filterRef.current) {
+      filterRef.current.frequency.value = 200 + filterValue * 4800;
+    }
+  }, [filterValue]);
 
   return { currentFreq, level };
 };
