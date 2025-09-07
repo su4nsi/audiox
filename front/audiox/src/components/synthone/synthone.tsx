@@ -7,7 +7,7 @@ import "./synthone.css";
 export default function SynthOne() {
   const [filterValue, setFilterValue] = useState(0.5);
   const [freqValuex, setFreqValuex] = useState(0.5);
-  const {} = useSynthoneLogic(filterValue);
+  const { pressedKeys } = useSynthoneLogic(filterValue);
 
   return (
     <div className="synthone-container">
@@ -23,7 +23,7 @@ export default function SynthOne() {
         </div>
         <div className="piano-container">
           {" "}
-          <PianoOctave />
+          <PianoOctave pressedKeys={pressedKeys} />
         </div>
       </div>
     </div>

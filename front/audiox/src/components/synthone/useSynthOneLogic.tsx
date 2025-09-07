@@ -9,6 +9,8 @@ const useSynthoneLogic = (filterValue: number) => {
   const levelRef = useRef(3);
 
   const pressedKeysRef = useRef<Set<string>>(new Set());
+  const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
+
   const activeFrequenciesRef = useRef<Map<string, number>>(new Map());
 
   useEffect(() => {
@@ -62,6 +64,7 @@ const useSynthoneLogic = (filterValue: number) => {
 
       if (!pressedKeysRef.current.has(key)) {
         pressedKeysRef.current.add(key);
+        setPressedKeys(new Set(pressedKeysRef.current));
         const baseFreq = keyMap[key];
         if (!baseFreq) return;
         const freq = baseFreq * Math.pow(2, levelRef.current - 3);
@@ -76,6 +79,7 @@ const useSynthoneLogic = (filterValue: number) => {
       if (!synthRef.current) return;
       if (pressedKeysRef.current.has(key)) {
         pressedKeysRef.current.delete(key);
+        setPressedKeys(new Set(pressedKeysRef.current));
         const freq = activeFrequenciesRef.current.get(key);
         if (!freq) return;
         synthRef.current.triggerRelease(freq);
@@ -102,7 +106,7 @@ const useSynthoneLogic = (filterValue: number) => {
     }
   }, [filterValue]);
 
-  return { currentFreq, level };
+  return { pressedKeys: pressedKeysRef.current };
 };
 
 export default useSynthoneLogic;
