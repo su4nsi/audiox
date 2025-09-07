@@ -46,7 +46,17 @@
 
   transition: background 0.1s;
 }
+.white-key.active {
+  background: #e6e6e6;
+  border-color: #d3a78a;
+  box-shadow: 0 0 10px #007bff55;
+}
 
+.black-key.active {
+  background: #d3a78a;
+  color: #fff;
+  box-shadow: 0 0 10px #3333ff88;
+}
 /* Texto en las teclas */
 .note-label {
   font-family: fantasy;
